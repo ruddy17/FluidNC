@@ -7,11 +7,14 @@ ESP32-S3 Super Mini CoreXY controller:
   Firmware OTA is disabled for this layout; updates use USB/serial.
 - CoreXY/TMC2209 homing cleanup: refresh released coupled limit inputs and
   disable the StallGuard window when returning to ordinary StealthChop.
+  This fix was merged upstream in PR #1910, including a guard that prevents
+  homing from continuing after an abort during the initial limit-refresh dwell.
 
 `main` contains both changes on top of upstream. The separate
 `codex/corexy-homing-fix` branch is the source of
-[upstream PR #1910](https://github.com/bdring/FluidNC/pull/1910) and contains
-only the homing fix, without the partition changes.
+[merged upstream PR #1910](https://github.com/bdring/FluidNC/pull/1910) and contains
+only the homing fix, without the partition changes. `main` includes the
+maintainer's dwell guard from commit `57100b8d` as a separate backport.
 
 ## Build
 
